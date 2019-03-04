@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 16:31:38 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/02 16:05:25 by hrice            ###   ########.fr       */
+/*   Created: 2019/03/04 15:34:29 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/04 15:34:49 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef COLOR_H
 
-int	ft_abs(int x)
-{
-	return (x < 0 ? - x : x);
-}
+# define COLOR_H
+
+# define TEXT_COLOR			0xEAEAEA
+# define BACKGROUND			0x222222
+# define MENU_BACKGROUND	0x1E1E1E
+
+# define COLOR_DISCO		0x9A1F6A
+# define COLOR_BRICK_RED	0xC2294E
+# define COLOR_FLAMINGO		0xEC4B27
+# define COLOR_JAFFA		0xEF8633
+# define COLOR_SAFFRON		0xF3AF3D
+
+#endif

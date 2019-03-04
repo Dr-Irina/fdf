@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_is_digit_base.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 16:31:38 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/02 16:05:25 by hrice            ###   ########.fr       */
+/*   Created: 2019/03/02 16:59:35 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/02 17:01:31 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_abs(int x)
+int	ft_is_digit_base(char c, int base)
 {
-	return (x < 0 ? - x : x);
+	const char	*digits = "012345678ABCDEF";
+	int	i;
+
+	i = 0;
+	while (i < base)
+	{
+		if (digits[i] == ft_toupper(c))
+			return (i);
+		i++;
+	}
+	return (-1);
 }

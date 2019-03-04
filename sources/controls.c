@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 16:31:38 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/02 16:05:25 by hrice            ###   ########.fr       */
+/*   Created: 2019/03/04 16:59:06 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/04 17:37:55 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "mlx.h"
+#include "fdf.h"
+#include <stdlib.h>
 
-int	ft_abs(int x)
+int		close()
 {
-	return (x < 0 ? - x : x);
+	/* (void)param; */
+	exit(0);
+	return (0);
+}
+
+void	setup_controls(t_fdf *fdf)
+{
+	/* mlx_hook(fdf->win, 2, 0, key_press, fdf); */
+	mlx_hook(fdf->win, 17, 0, close, fdf);
+	/* mlx_hook(fdf->win, 4, 0, mouse_press, fdf); */
+	/* mlx_hook(fdf->win, 5, 0, mouse_release, fdf); */
+	/* mlx_hook(fdf->win, 6, 0, mouse_move, fdf); */
 }
