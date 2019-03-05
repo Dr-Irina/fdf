@@ -6,7 +6,7 @@
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 14:24:26 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/04 16:26:14 by hrice            ###   ########.fr       */
+/*   Updated: 2019/03/05 16:40:01 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int			main(int ac, char **av)
 			ft_error(ERR_MAP);
 		map = map_init();
 		if (read_map(fd, &coords_stack, map) == -1)
-			ft_error(ERR_MAP_READING);
+			ft_error("1");
 		fdf = fdf_init(map);
 		stack_to_arr(&coords_stack, map);
 		fdf->camera = camera_init(fdf);
 		draw(fdf->map, fdf);
-		setup_controls(fdf);
+		/* setup_controls(fdf); */
 		mlx_loop(fdf->mlx);
 	}
 	ft_error(ERR_USAGE);

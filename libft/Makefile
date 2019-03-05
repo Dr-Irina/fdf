@@ -6,7 +6,7 @@
 #    By: hrice <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/31 19:15:11 by hrice             #+#    #+#              #
-#    Updated: 2019/03/04 17:21:11 by hrice            ###   ########.fr        #
+#    Updated: 2019/03/05 18:19:21 by hrice            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ SRC = ft_memset.c \
 	  ft_lstmap.c \
 	  ft_isspace.c \
 	  ft_islower.c \
+	  ft_toupper.c\
 	  ft_isupper.c \
 	  ft_lst_rev.c \
 	  ft_lst_count.c \
@@ -82,7 +83,7 @@ SRC = ft_memset.c \
 	  ft_prefix.c\
 	  ft_is_digit_base.c\
 	  ft_isnumber.c\
-	  ft_percent.c\
+	  percent.c\
 	  get_next_line.c\
 	  ft_min.c
 OBJ = $(SRC:.c=.o)

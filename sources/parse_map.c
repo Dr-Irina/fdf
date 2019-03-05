@@ -6,7 +6,7 @@
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:47:43 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/04 16:02:03 by hrice            ###   ########.fr       */
+/*   Updated: 2019/03/05 16:55:32 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,45 @@ void		free_arr(char **arr)
 	free(arr);
 }
 
-t_z_value	*new_coord(char *str)
+/* t_z_value	*new_coord(char *str) */
+/* { */
+/* 	t_z_value	*coord; */
+/* 	char		**part; */
+
+/* 	if (!(coord = (t_z_value *)ft_memalloc(sizeof(t_z_value)))) */
+/* 		ft_error("2"); */
+/* 	if (!(part= ft_strsplit(str, ','))) */
+/* 		ft_error("3"); */
+/* 	if (!ft_isnumber(part[0], 10)) */
+/* 		ft_error("4"); */
+/* 	if (part[1] && !ft_isnumber(part[1], 16)) */
+/* 		ft_error("5"); */
+/* 	coord->z = ft_atoi(part[0]); */
+/* 	coord->color = part[1] ? ft_atoi_base(part[1], 16) : -1; */
+/* 	coord->next = NULL; */
+/* 	free_arr(part); */
+/* 	return (coord); */
+/* } */
+
+t_z_value	*new_coord(char *s)
 {
 	t_z_value	*coord;
-	char		**part;
+	char		**parts;
 
 	if (!(coord = (t_z_value *)ft_memalloc(sizeof(t_z_value))))
 		ft_error(ERR_MAP_READING);
-	if (!(part= ft_strsplit(str, ',')))
+	if (!(parts = ft_strsplit(s, ',')))
 		ft_error(ERR_MAP_READING);
-	if (!(ft_isnumber(part[0], 10)))
+	if (!ft_isnumber(parts[0], 10))
+		ft_error("4");
+	if (parts[1] && !ft_isnumber(parts[1], 16))
 		ft_error(ERR_MAP_READING);
-	if (part[1] && !ft_isnumber(part[1], 16))
-		ft_error(ERR_MAP_READING);
-	coord->z = ft_atoi(part[0]);
-	coord->color = part[1] ? ft_atoi_base(part[1], 16) : -1;
+	coord->z = ft_atoi(parts[0]);
+	coord->color = parts[1] ? ft_atoi_base(parts[1], 16) : -1;
 	coord->next = NULL;
-	free_arr(part);
+	free_arr(parts);
 	return (coord);
 }
-
 void 		parse_line(char **coords_line, t_z_value **coords_stack, t_map *map)
 {
 	int		width;
@@ -69,7 +88,7 @@ int			read_map(int fd, t_z_value **coords_stack, t_map *map)
 	while ((result = get_next_line(fd, &line)) == 1)
 	{
 		if (!(coords_line = ft_strsplit(line, ' ')))
-			ft_error(ERR_MAP_READING);
+			ft_error("6");
 		parse_line(coords_line, coords_stack, map);
 		free_arr(coords_line);
 		ft_strdel(&line);

@@ -6,7 +6,7 @@
 #    By: hrice <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/02 15:15:16 by hrice             #+#    #+#              #
-#    Updated: 2019/03/04 17:25:47 by hrice            ###   ########.fr        #
+#    Updated: 2019/03/05 16:27:44 by hrice            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -39,8 +39,7 @@ SOURCES_LIST = main.c\
 	draw.c\
 	color.c\
 	additional_function.c\
-	project.c\
-	controls.c
+	project.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
 OBJECTS_DIRECTORY = objects/

@@ -6,7 +6,7 @@
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 17:16:01 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/04 17:09:51 by hrice            ###   ########.fr       */
+/*   Updated: 2019/03/05 18:33:09 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int						ft_strncmp(const char *s1, const char *s2, size_t n);
 int						ft_atoi(const char *str);
 int						ft_isalpha(int c);
 int						ft_isdigit(int c);
+int						ft_islower(int c);
 int						ft_isalnum(int c);
 int						ft_isascii(int c);
 int						ft_isprint(int c);
@@ -120,6 +121,13 @@ typedef struct			s_list
 	size_t				content_size;
 	struct s_list		*next;
 }						t_list;
+
+typedef enum
+{
+						true,
+						false
+}						t_bool;
+
 int						ft_min(int a, int b);
 void					ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 t_list						*ft_lstnew(void const *content, size_t content_size);
@@ -129,10 +137,10 @@ void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list					*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void					ft_error(char *s);
 int						ft_abs(int x);
-int						ft_is_spase(int c);
-int						ft_prefix(const char *str, int base);
+int						ft_is_space(int c);
+t_bool					ft_prefix(const char *str, int base);
 int						ft_is_digit_base(char c, int base);
-int						ft_isnumber(char *str, int base);
+t_bool					ft_isnumber(char *str, int base);
 int						ft_atoi_base(const char *str, int base);
 double					percent(int start, int finish, int cur);
 #endif

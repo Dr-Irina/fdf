@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_percent.c                                       :+:      :+:    :+:   */
+/*   percent.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 17:06:02 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/02 17:06:02 by hrice            ###   ########.fr       */
+/*   Updated: 2019/03/05 16:00:47 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ double	percent(int start, int finish, int cur)
 
 	place = cur - start;
 	interval = finish - start;
-	return ((interval = 0) ? 1.0 : (place / interval));
+	return ((interval == 0) ? 1.0 : (place / interval));
 }

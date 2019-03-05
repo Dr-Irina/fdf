@@ -6,14 +6,21 @@
 /*   By: wned <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 14:57:26 by wned              #+#    #+#             */
-/*   Updated: 2018/11/22 15:11:42 by wned             ###   ########.fr       */
+/*   Updated: 2019/03/05 18:50:22 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+/* int	ft_toupper(int c) */
+/* { */
+/* 	if (c >= 'a' && c <= 'z') */
+/* 		return (c - 32); */
+/* 	else */
+/* 		return (c); */
+/* } */
+
+#include "libft.h"
+
+int		ft_toupper(int c)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	else
-		return (c);
+	return (ft_islower(c) ? (c - 'a' + 'A') : c);
 }

@@ -6,7 +6,7 @@
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 18:37:56 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/04 17:36:10 by hrice            ###   ########.fr       */
+/*   Updated: 2019/03/05 15:34:00 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_map		*map_init()
 		ft_error(ERR_MAP_INIT);
 	map->width = 0;
 	map->height = 0;
+	map->coords_arr = 0;
 	map->color_arr = NULL;
 	map->z_min = -2147483648;
 	map->z_max = 2147483647;

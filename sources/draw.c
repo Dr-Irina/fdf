@@ -6,7 +6,7 @@
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 14:16:02 by hrice             #+#    #+#             */
-/*   Updated: 2019/02/28 16:31:39 by hrice            ###   ########.fr       */
+/*   Updated: 2019/03/05 15:57:26 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void		put_pixel(t_fdf *fdf, int x, int y, int color)
 	{
 		i = (x * fdf->bpp / 8) + (y * fdf->size_line);
 		fdf->data_addr[i] = color;
-		fdf->data_addr[i++] = color >> 8;
-		fdf->data_addr[i++] = color >> 16;
+		fdf->data_addr[++i] = color >> 8;
+		fdf->data_addr[++i] = color >> 16;
 	}
 }
 
