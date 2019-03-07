@@ -3,16 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/24 14:16:02 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/05 15:57:26 by hrice            ###   ########.fr       */
+/*   Created: 2018/08/06 15:27:28 by vbrazhni          #+#    #+#             */
+/*   Updated: 2019/03/07 18:51:02 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+/*
+** "fdf.h" for t_fdf type, t_point type, get_color(), WIDTH macros,
+**  HEIGHT macros, MENU_WIDTH macros, project(), new_point() and print_menu()
+** "libft.h" for FT_ABS macros and ft_bzero()
+** "mlx.h" for mlx_put_image_to_window()
+** "color.h" for MENU_BACKGROUND macros and BACKGROUND macros
+*/
 
-void		put_pixel(t_fdf *fdf, int x, int y, int color)
+#include "fdf.h"
+#include "libft.h"
+#include "mlx.h"
+#include "color.h"
+
+/*
+** Put pixel into map image
+*/
+
+static void	put_pixel(t_fdf *fdf, int x, int y, int color)
 {
 	int		i;
 
@@ -25,23 +40,27 @@ void		put_pixel(t_fdf *fdf, int x, int y, int color)
 	}
 }
 
-void		draw_line(t_point start, t_point finish, t_fdf *fdf)
+/*
+** Draw line
+*/
+
+static void	draw_line(t_point f, t_point s, t_fdf *fdf)
 {
 	t_point	delta;
 	t_point	sign;
 	t_point	cur;
 	int		error[2];
 
-	delta.x = ft_abs(finish.x - start.x);
-	delta.y = ft_abs(finish.y - start.y);
-	sign.x = start.x < finish.x ? 1 : -1;
-	sign.y = start.y < finish.y ? 1 : -1;
+	delta.x = ft_abs(s.x - f.x);
+	delta.y = ft_abs(s.y - f.y);
+	sign.x = f.x < s.x ? 1 : -1;
+	sign.y = f.y < s.y ? 1 : -1;
 	error[0] = delta.x - delta.y;
-	cur = start;
-	while (cur.x != finish.x || cur.y != finish.y)
+	cur = f;
+	while (cur.x != s.x || cur.y != s.y)
 	{
-		put_pixel(fdf, cur.x, cur.y, get_color(cur, start, finish, delta));
-		if ((error[0] * 2) > - delta.y)
+		put_pixel(fdf, cur.x, cur.y, get_color(cur, f, s, delta));
+		if ((error[1] = error[0] * 2) > -delta.y)
 		{
 			error[0] -= delta.y;
 			cur.x += sign.x;
@@ -54,12 +73,35 @@ void		draw_line(t_point start, t_point finish, t_fdf *fdf)
 	}
 }
 
+/*
+** Draw background colors (Menu background + main background)
+*/
+
+static void	draw_background(t_fdf *fdf)
+{
+	int	*image;
+	int	i;
+
+	ft_bzero(fdf->data_addr, WIDTH * HEIGHT * (fdf->bpp / 8));
+	image = (int *)(fdf->data_addr);
+	i = 0;
+	while (i < HEIGHT * WIDTH)
+	{
+		image[i] = (i % WIDTH < MENU_WIDTH) ? MENU_BACKGROUND : BACKGROUND;
+		i++;
+	}
+}
+
+/*
+** Draw image
+*/
+
 void		draw(t_map *map, t_fdf *fdf)
 {
 	int		x;
 	int		y;
 
-	/* draw_background(fdf); */
+	draw_background(fdf);
 	y = 0;
 	while (y < map->height)
 	{
@@ -77,5 +119,5 @@ void		draw(t_map *map, t_fdf *fdf)
 		y++;
 	}
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
-	/* print_menu(fdf); */
+	print_menu(fdf);
 }

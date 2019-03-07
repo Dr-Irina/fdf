@@ -6,7 +6,7 @@
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 17:03:27 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/02 17:04:00 by hrice            ###   ########.fr       */
+/*   Updated: 2019/03/07 15:17:54 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoi_base(const char *str, int base)
 	result = 0;
 	i = 0;
 	sign = 1;
-	while (ft_is_spase(str[i]))
+	while (ft_is_space(str[i]))
 		i++;
 	if (base != 10 && !ft_prefix(&str[i], base))
 		return (-1);

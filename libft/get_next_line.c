@@ -6,11 +6,12 @@
 /*   By: hrice <hrice@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 18:49:10 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/02 17:30:59 by hrice            ###   ########.fr       */
+/*   Updated: 2019/03/07 19:47:13 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
 int						read_file(t_new_l *line, char *buff)
 {

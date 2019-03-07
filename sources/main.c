@@ -3,36 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/27 14:24:26 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/05 16:40:01 by hrice            ###   ########.fr       */
+/*   Created: 2018/07/29 19:37:47 by vbrazhni          #+#    #+#             */
+/*   Updated: 2019/03/07 18:28:23 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "errors.h"
+/*
+** "fdf.h" for t_map type, t_coord_val type, t_fdf type, terminate(),
+**  map_init(), read_map(), fdf_init(), stack_to_arrays(), camera_init(),
+**  draw() and setup_controls()
+** "mlx.h" for mlx_loop()
+** "error_message.h" for ERR_MAP macros, ERR_MAP_READING macros
+**  and ERR_USAGE macros
+** <errno.h> for errno variable
+** <fcntl.h> for open() and O_RDONLY flag
+** <stdlib.h> for NULL macros
+*/
 
-int			main(int ac, char **av)
+#include "fdf.h"
+#include "mlx.h"
+#include "errors.h"
+#include <errno.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <libft.h>
+
+int		main(int argc, char **argv)
 {
 	int			fd;
 	t_map		*map;
-	t_z_value	*coords_stack;
+	t_z_val	*coords_stack;
 	t_fdf		*fdf;
 
 	errno = 0;
-	if (ac == 2)
+	coords_stack = NULL;
+	if (argc == 2)
 	{
-		if (!((fd = open(av[1], O_RDONLY)) >= 0))
+		if (!((fd = open(argv[1], O_RDONLY)) >= 0))
 			ft_error(ERR_MAP);
 		map = map_init();
 		if (read_map(fd, &coords_stack, map) == -1)
-			ft_error("1");
+			ft_error(ERR_MAP_READING);
 		fdf = fdf_init(map);
-		stack_to_arr(&coords_stack, map);
+		stack_to_arrays(&coords_stack, map);
 		fdf->camera = camera_init(fdf);
 		draw(fdf->map, fdf);
-		/* setup_controls(fdf); */
+		setup_controls(fdf);
 		mlx_loop(fdf->mlx);
 	}
 	ft_error(ERR_USAGE);

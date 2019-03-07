@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   error_message.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 19:21:11 by hrice             #+#    #+#             */
-/*   Updated: 2019/02/27 14:34:48 by hrice            ###   ########.fr       */
+/*   Created: 2018/08/06 16:19:15 by vbrazhni          #+#    #+#             */
+/*   Updated: 2018/08/06 16:19:16 by vbrazhni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
-#include <errno.h>
+#ifndef ERROR_MESSAGE_H
+
+# define ERROR_MESSAGE_H
 
 # define ERR_USAGE			"Usage: ./fdf MAP_FILE"
 # define ERR_MAP			"Incorrect MAP_FILE"

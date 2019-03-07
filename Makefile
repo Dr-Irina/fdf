@@ -6,7 +6,7 @@
 #    By: hrice <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/02 15:15:16 by hrice             #+#    #+#              #
-#    Updated: 2019/03/05 16:27:44 by hrice            ###   ########.fr        #
+#    Updated: 2019/03/07 20:06:04 by hrice            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -28,7 +28,8 @@ MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
 HEADERS_LIST = fdf.h\
 	errors.h\
-	color.h
+	color.h\
+	key_macos.h
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
@@ -38,8 +39,15 @@ SOURCES_LIST = main.c\
 	init.c\
 	draw.c\
 	color.c\
-	additional_function.c\
-	project.c
+	project.c\
+	controls.c\
+	controls_utils.c\
+	convert.c\
+	keyboard_controls.c\
+	menu.c\
+	mouse_controls.c\
+	read_stack.c\
+	utils_2.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
 OBJECTS_DIRECTORY = objects/

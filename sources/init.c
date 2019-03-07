@@ -3,17 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 18:37:56 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/05 15:34:00 by hrice            ###   ########.fr       */
+/*   Created: 2018/08/10 17:19:02 by vbrazhni          #+#    #+#             */
+/*   Updated: 2019/03/07 18:49:59 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** "fdf.h" for t_map type, terminate(), t_fdf type, WIDTH macros, HEIGHT macros,
+**  MENU_WIDTH macros and t_camera type
+** "libft.h" for ft_memalloc(), NULL macros ("libft.h" includes <string.h>),
+**  FT_INT_MAX macros, FT_INT_MIN macros and FT_MIN macros
+** "mlx.h" for mlx_init(), mlx_new_window(), mlx_new_image()
+**  and mlx_get_data_addr()
+** "error_message.h" for ERR_MAP_INIT macros, ERR_FDF_INIT macros
+**  and ERR_CAMERA_INIT macros
+*/
+
 #include "fdf.h"
+#include "libft.h"
+#include "mlx.h"
 #include "errors.h"
 
-t_map		*map_init()
+/*
+** Initialize t_map element
+*/
+
+t_map		*map_init(void)
 {
 	t_map	*map;
 
@@ -21,13 +38,17 @@ t_map		*map_init()
 		ft_error(ERR_MAP_INIT);
 	map->width = 0;
 	map->height = 0;
-	map->coords_arr = 0;
-	map->color_arr = NULL;
+	map->coords_arr = NULL;
+	map->colors_arr = NULL;
 	map->z_min = -2147483648;
 	map->z_max = 2147483647;
 	map->z_range = 0;
 	return (map);
 }
+
+/*
+** Initialize t_fdf element
+*/
 
 t_fdf		*fdf_init(t_map *map)
 {
@@ -37,15 +58,21 @@ t_fdf		*fdf_init(t_map *map)
 		ft_error(ERR_FDF_INIT);
 	if (!(fdf->mlx = mlx_init()))
 		ft_error(ERR_FDF_INIT);
-	if (!(fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, "FDF")))
+	if (!(fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, "FdF")))
 		ft_error(ERR_FDF_INIT);
 	if (!(fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT)))
 		ft_error(ERR_FDF_INIT);
 	fdf->data_addr = mlx_get_data_addr(fdf->img, &(fdf->bpp),
-				&(fdf->size_line), &(fdf->endian));
+										&(fdf->size_line), &(fdf->endian));
 	fdf->map = map;
-	return(fdf);
+	if (!(fdf->mouse = (t_mouse *)ft_memalloc(sizeof(t_mouse))))
+		ft_error(ERR_FDF_INIT);
+	return (fdf);
 }
+
+/*
+** Initialize t_camera element
+*/
 
 t_camera	*camera_init(t_fdf *fdf)
 {

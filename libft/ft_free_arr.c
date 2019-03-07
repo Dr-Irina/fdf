@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_free_arr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wned <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 18:04:38 by wned              #+#    #+#             */
-/*   Updated: 2019/03/07 19:43:42 by hrice            ###   ########.fr       */
+/*   Created: 2019/03/07 17:03:06 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/07 20:10:51 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
-void	ft_putchar(char c)
+void		ft_free_arr(char **arr)
 {
-	write(1, &c, 1);
+	size_t	i;
+
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
 }

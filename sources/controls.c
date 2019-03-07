@@ -3,29 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 16:59:06 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/04 17:37:55 by hrice            ###   ########.fr       */
+/*   Created: 2018/08/09 12:56:38 by vbrazhni          #+#    #+#             */
+/*   Updated: 2019/03/07 16:34:40 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** "mlx.h" for mlx_hook()
+** "fdf.h" for key_press(), close(), mouse_press(), mouse_release() and
+** mouse_move()
+** <stdlib.h> for exit()
+*/
+
 #include "mlx.h"
 #include "fdf.h"
+#include "libft.h"
 #include <stdlib.h>
 
-int		close()
+/*
+** Close window with 'X'
+*/
+
+int		close(void *param)
 {
-	/* (void)param; */
+	(void)param;
 	exit(0);
 	return (0);
 }
 
+/*
+** Connect functions-controllers to window
+*/
+
 void	setup_controls(t_fdf *fdf)
 {
-	/* mlx_hook(fdf->win, 2, 0, key_press, fdf); */
+	mlx_hook(fdf->win, 2, 0, key_press, fdf);
 	mlx_hook(fdf->win, 17, 0, close, fdf);
-	/* mlx_hook(fdf->win, 4, 0, mouse_press, fdf); */
-	/* mlx_hook(fdf->win, 5, 0, mouse_release, fdf); */
-	/* mlx_hook(fdf->win, 6, 0, mouse_move, fdf); */
+	mlx_hook(fdf->win, 4, 0, mouse_press, fdf);
+	mlx_hook(fdf->win, 5, 0, mouse_release, fdf);
+	mlx_hook(fdf->win, 6, 0, mouse_move, fdf);
 }

@@ -3,69 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/28 14:47:43 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/05 16:55:32 by hrice            ###   ########.fr       */
+/*   Created: 2018/08/06 15:27:20 by vbrazhni          #+#    #+#             */
+/*   Updated: 2019/03/07 20:10:10 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** "fdf.h" for t_z_val type, ft_error(), ft_isnumber(), ft_atoi_base(),
+**  t_map type and push()
+** "libft.h" for size_t type ("libft.h" includes <string.h>), ft_memalloc()
+**  ft_strsplit(), ft_atoi(), NULL macros ("libft.h" includes <string.h>)
+**  and ft_strdel()
+** "get_next_line.h" for get_next_line()
+** "error_message.h" for ERR_MAP_READING macros and ERR_MAP macros
+** <stdlib.h> for free()
+*/
+
 #include "fdf.h"
-#include "errors.h"
 #include "libft.h"
+#include "errors.h"
+#include <stdlib.h>
 
-void		free_arr(char **arr)
-{
-	size_t	i;
+/*
+** Free array that was returned by ft_strsplit()
+*/
 
-	i = 0;
-	while (arr[i])
-		free(arr[i++]);
-	free(arr);
-}
-
-/* t_z_value	*new_coord(char *str) */
+/* static void			free_strsplit_arr(char **arr) */
 /* { */
-/* 	t_z_value	*coord; */
-/* 	char		**part; */
+/* 	size_t i; */
 
-/* 	if (!(coord = (t_z_value *)ft_memalloc(sizeof(t_z_value)))) */
-/* 		ft_error("2"); */
-/* 	if (!(part= ft_strsplit(str, ','))) */
-/* 		ft_error("3"); */
-/* 	if (!ft_isnumber(part[0], 10)) */
-/* 		ft_error("4"); */
-/* 	if (part[1] && !ft_isnumber(part[1], 16)) */
-/* 		ft_error("5"); */
-/* 	coord->z = ft_atoi(part[0]); */
-/* 	coord->color = part[1] ? ft_atoi_base(part[1], 16) : -1; */
-/* 	coord->next = NULL; */
-/* 	free_arr(part); */
-/* 	return (coord); */
+/* 	i = 0; */
+/* 	while (arr[i]) */
+/* 		free(arr[i++]); */
+/* 	free(arr); */
 /* } */
 
-t_z_value	*new_coord(char *s)
+/*
+** Create t_z_val element with information about z and color value
+*/
+
+static t_z_val	*new_coord(char *s)
 {
-	t_z_value	*coord;
+	t_z_val	*coord;
 	char		**parts;
 
-	if (!(coord = (t_z_value *)ft_memalloc(sizeof(t_z_value))))
+	if (!(coord = (t_z_val *)ft_memalloc(sizeof(t_z_val))))
 		ft_error(ERR_MAP_READING);
 	if (!(parts = ft_strsplit(s, ',')))
 		ft_error(ERR_MAP_READING);
 	if (!ft_isnumber(parts[0], 10))
-		ft_error("4");
+		ft_error(ERR_MAP_READING);
 	if (parts[1] && !ft_isnumber(parts[1], 16))
 		ft_error(ERR_MAP_READING);
 	coord->z = ft_atoi(parts[0]);
 	coord->color = parts[1] ? ft_atoi_base(parts[1], 16) : -1;
 	coord->next = NULL;
-	free_arr(parts);
+	ft_free_arr(parts);
 	return (coord);
 }
-void 		parse_line(char **coords_line, t_z_value **coords_stack, t_map *map)
+
+/*
+** Get coordinate values from line, create t_z_val elements
+** and them add to stack
+*/
+
+static void			parse_line(char **coords_line,
+							t_z_val **coords_stack,
+							t_map *map)
 {
-	int		width;
+	int	width;
 
 	width = 0;
 	while (*coords_line)
@@ -79,7 +87,13 @@ void 		parse_line(char **coords_line, t_z_value **coords_stack, t_map *map)
 		ft_error(ERR_MAP);
 }
 
-int			read_map(int fd, t_z_value **coords_stack, t_map *map)
+/*
+** Read map from file line by line
+*/
+
+int					read_map(const int fd,
+							t_z_val **coords_stack,
+							t_map *map)
 {
 	char	*line;
 	int		result;
@@ -88,9 +102,9 @@ int			read_map(int fd, t_z_value **coords_stack, t_map *map)
 	while ((result = get_next_line(fd, &line)) == 1)
 	{
 		if (!(coords_line = ft_strsplit(line, ' ')))
-			ft_error("6");
+			ft_error(ERR_MAP_READING);
 		parse_line(coords_line, coords_stack, map);
-		free_arr(coords_line);
+		ft_free_arr(coords_line);
 		ft_strdel(&line);
 		map->height++;
 	}

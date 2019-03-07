@@ -6,7 +6,7 @@
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 17:16:01 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/05 18:33:09 by hrice            ###   ########.fr       */
+/*   Updated: 2019/03/07 20:10:29 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <stdio.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -143,4 +142,5 @@ int						ft_is_digit_base(char c, int base);
 t_bool					ft_isnumber(char *str, int base);
 int						ft_atoi_base(const char *str, int base);
 double					percent(int start, int finish, int cur);
+void					ft_free_arr(char **arr);
 #endif
