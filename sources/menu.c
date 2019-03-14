@@ -3,26 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/09 14:10:07 by vbrazhni          #+#    #+#             */
-/*   Updated: 2018/08/09 14:10:08 by vbrazhni         ###   ########.fr       */
+/*   Created: 2019/03/12 18:01:14 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/12 18:01:41 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** "fdf.h" for t_fdf type
-** "mlx.h" for mlx_string_put()
-** "color.h" for TEXT_COLOR
-*/
 
 #include "fdf.h"
 #include "mlx.h"
 #include "color.h"
-
-/*
-** Print "How to Use" instruction.
-*/
 
 void	print_menu(t_fdf *fdf)
 {

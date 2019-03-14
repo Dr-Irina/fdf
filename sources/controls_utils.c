@@ -3,25 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   controls_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/09 16:04:52 by vbrazhni          #+#    #+#             */
-/*   Updated: 2019/03/07 16:35:26 by hrice            ###   ########.fr       */
+/*   Created: 2019/03/12 17:56:25 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/12 17:56:53 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** "fdf.h" for t_fdf type and draw()
-** "key_macos.h" for key codes
-*/
-
 #include "fdf.h"
-#include "libft.h"
 #include "key_macos.h"
-
-/*
-** Zoom map
-*/
 
 void	zoom(int key, t_fdf *fdf)
 {
@@ -38,10 +28,6 @@ void	zoom(int key, t_fdf *fdf)
 	draw(fdf->map, fdf);
 }
 
-/*
-** Move map
-*/
-
 void	move(int key, t_fdf *fdf)
 {
 	if (key == ARROW_LEFT)
@@ -54,10 +40,6 @@ void	move(int key, t_fdf *fdf)
 		fdf->camera->y_offset += 10;
 	draw(fdf->map, fdf);
 }
-
-/*
-** Rotate map
-*/
 
 void	rotate(int key, t_fdf *fdf)
 {
@@ -78,10 +60,6 @@ void	rotate(int key, t_fdf *fdf)
 	draw(fdf->map, fdf);
 }
 
-/*
-** Change z value. Make map more flatten
-*/
-
 void	flatten(int key, t_fdf *fdf)
 {
 	if (key == MAIN_PAD_LESS)
@@ -94,10 +72,6 @@ void	flatten(int key, t_fdf *fdf)
 		fdf->camera->z_divisor = 10;
 	draw(fdf->map, fdf);
 }
-
-/*
-** Change projection type
-*/
 
 void	change_projection(int key, t_fdf *fdf)
 {

@@ -1,19 +1,18 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: hrice <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/03/02 15:15:16 by hrice             #+#    #+#              #
-#    Updated: 2019/03/07 20:06:04 by hrice            ###   ########.fr        #
+#    Created: 2019/03/12 18:29:53 by hrice             #+#    #+#              #
+#    Updated: 2019/03/12 18:30:54 by hrice            ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 NAME = fdf
 
 CC = gcc
-
 FLAGS = -Wall -Werror -Wextra -O3
 LIBRARIES = -lmlx -lm -lft -L$(LIBFT_DIRECTORY) -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(MINILIBX_HEADERS)
@@ -27,27 +26,26 @@ MINILIBX_DIRECTORY = ./minilibx_macos/
 MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
 HEADERS_LIST = fdf.h\
-	errors.h\
 	color.h\
-	key_macos.h
+	key_macos.h\
+	error_message.h
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./sources/
 SOURCES_LIST = main.c\
-	parse_map.c\
+	read_map.c\
+	read_stack.c\
 	init.c\
+	convert.c\
 	draw.c\
 	color.c\
 	project.c\
-	controls.c\
-	controls_utils.c\
-	convert.c\
-	keyboard_controls.c\
 	menu.c\
+	controls.c\
+	keyboard_controls.c\
 	mouse_controls.c\
-	read_stack.c\
-	utils_2.c
+	controls_utils.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
 OBJECTS_DIRECTORY = objects/

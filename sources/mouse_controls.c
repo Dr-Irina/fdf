@@ -3,24 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_controls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/06 15:29:19 by vbrazhni          #+#    #+#             */
-/*   Updated: 2018/08/06 15:29:36 by vbrazhni         ###   ########.fr       */
+/*   Created: 2019/03/12 18:01:53 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/12 18:02:25 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** "fdf.h" for t_fdf type, zoom(), boolean values and draw()
-** "key_macos.h" for mouse key codes
-*/
-
 #include "fdf.h"
 #include "key_macos.h"
-
-/*
-** Handle mouse press
-*/
+#include "libft.h"
 
 int			mouse_press(int button, int x, int y, void *param)
 {
@@ -36,10 +28,6 @@ int			mouse_press(int button, int x, int y, void *param)
 	return (0);
 }
 
-/*
-** Handle mouse release
-*/
-
 int			mouse_release(int button, int x, int y, void *param)
 {
 	t_fdf	*fdf;
@@ -51,10 +39,6 @@ int			mouse_release(int button, int x, int y, void *param)
 	fdf->mouse->is_pressed = false;
 	return (0);
 }
-
-/*
-** Handle mouse move
-*/
 
 int			mouse_move(int x, int y, void *param)
 {

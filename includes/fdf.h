@@ -6,7 +6,7 @@
 /*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/02 10:39:59 by vbrazhni          #+#    #+#             */
-/*   Updated: 2019/03/07 20:02:42 by hrice            ###   ########.fr       */
+/*   Updated: 2019/03/12 19:01:35 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,18 @@
 # define WIDTH			1920
 # define MENU_WIDTH		250
 
-#include "libft.h"
-
-/* typedef enum */
-/* { */
-/* 	false, */
-/* 	true */
-/* }	t_bool; */
-
 typedef enum
 {
 	ISO,
 	PARALLEL
 }	t_projection;
 
-typedef struct			s_z_val
+typedef struct			s_coord_val
 {
 	int					z;
 	int					color;
-	struct s_z_val	*next;
-}						t_z_val;
+	struct s_coord_val	*next;
+}						t_coord_val;
 
 typedef struct			s_point
 {
@@ -85,7 +77,7 @@ typedef struct			s_fdf
 	void				*win;
 	void				*img;
 	char				*data_addr;
-	int					bpp;
+	int					bits_per_pixel;
 	int					size_line;
 	int					endian;
 	t_camera			*camera;
@@ -93,14 +85,13 @@ typedef struct			s_fdf
 	t_mouse				*mouse;
 }						t_fdf;
 
-int						read_map(const int fd,
-								t_z_val **coords_stack,
+int						read_map(const int fd, t_coord_val **coords_stack,
 								t_map *map);
 
-void					push(t_z_val **coords_stack,
-							t_z_val *new);
+void					push(t_coord_val **coords_stack,
+							t_coord_val *new);
 
-t_z_val				*pop(t_z_val **coords_stack);
+t_coord_val				*pop(t_coord_val **coords_stack);
 
 t_map					*map_init(void);
 
@@ -108,26 +99,19 @@ t_fdf					*fdf_init(t_map *map);
 
 t_camera				*camera_init(t_fdf *fdf);
 
-void					stack_to_arrays(t_z_val **coords_stack,
+void					stack_to_arrays(t_coord_val **coords_stack,
 										t_map *map);
 
-void					draw(t_map *map,
-							t_fdf *fdf);
+void					draw(t_map *map, t_fdf *fdf);
 
-int						get_default_color(int z,
-										t_map *map);
+int						get_default_color(int z, t_map *map);
 
-int						get_light(int start,
-								int end,
-								double percentage);
+int						get_light(int start, int end, double percentage);
 
-int						get_color(t_point current,
-								t_point start,
-								t_point end,
-								t_point delta);
+int						get_color(t_point current, t_point start,
+								t_point end, t_point delta);
 
-t_point					project(t_point p,
-								t_fdf *fdf);
+t_point					project(t_point p, t_fdf *fdf);
 
 void					print_menu(t_fdf *fdf);
 
@@ -135,47 +119,25 @@ int						close(void *param);
 
 void					setup_controls(t_fdf *fdf);
 
-int						key_press(int key,
-								void *param);
+int						key_press(int key, void *param);
 
-int						mouse_press(int button,
-									int x,
-									int y,
-									void *param);
+int						mouse_press(int button, int x,
+									int y, void *param);
 
-int						mouse_release(int button,
-									int x,
-									int y,
-									void *param);
+int						mouse_release(int button, int x,
+									int y, void *param);
 
-int						mouse_move(int x,
-								int y,
-								void *param);
+int						mouse_move(int x, int y, void *param);
 
-void					zoom(int key,
-							t_fdf *fdf);
+void					zoom(int key, t_fdf *fdf);
 
-void					move(int key,
-							t_fdf *fdf);
+void					move(int key, t_fdf *fdf);
 
-void					rotate(int key,
-							t_fdf *fdf);
+void					rotate(int key, t_fdf *fdf);
 
-void					flatten(int key,
-								t_fdf *fdf);
+void					flatten(int key, t_fdf *fdf);
 
-void					change_projection(int key,
-										t_fdf *fdf);
-
-//t_bool					ft_isnumber(char *str, int base);
-
-//int						ft_atoi_base(const char *str, int base);
-
-//double					percent(int start, int end, int current);
-
-void					terminate(char *s);
-
-int						get_index(int x, int y, int width);
+void					change_projection(int key, t_fdf *fdf);
 
 t_point					new_point(int x, int y, t_map *map);
 

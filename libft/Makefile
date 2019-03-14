@@ -6,7 +6,7 @@
 #    By: hrice <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/31 19:15:11 by hrice             #+#    #+#              #
-#    Updated: 2019/03/07 15:54:49 by hrice            ###   ########.fr        #
+#    Updated: 2019/03/12 17:34:49 by hrice            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,15 +76,16 @@ SRC = ft_memset.c \
 	  ft_lst_rev.c \
 	  ft_lst_count.c \
 	  ft_strisuppercase.c\
-	  ft_error.c\
-	  ft_abs.c\
-	  ft_is_spase.c\
-	  ft_prefix.c\
-	  ft_is_digit_base.c\
-	  ft_isnumber.c\
-	  percent.c\
 	  get_next_line.c\
-	  ft_min.c
+	  ft_error.c\
+	  ft_min.c\
+	  ft_isdigit_base.c\
+	  ft_has_prefix.c\
+	  ft_isnumber.c\
+	  ft_abs.c\
+	  ft_atoi_base.c\
+	  percent.c\
+	  get_index.c
 OBJ = $(SRC:.c=.o)
 HEADER = libft.h
 

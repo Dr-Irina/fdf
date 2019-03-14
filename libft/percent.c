@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 17:06:02 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/05 16:00:47 by hrice            ###   ########.fr       */
+/*   Created: 2019/03/12 17:29:25 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/12 17:31:58 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double	percent(int start, int finish, int cur)
+double	percent(int start, int end, int current)
 {
-	int	place;
-	int interval;
+	double	placement;
+	double	distance;
 
-	place = cur - start;
-	interval = finish - start;
-	return ((interval == 0) ? 1.0 : (place / interval));
+	placement = current - start;
+	distance = end - start;
+	return ((distance == 0) ? 1.0 : (placement / distance));
 }

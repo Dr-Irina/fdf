@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_arr.c                                      :+:      :+:    :+:   */
+/*   get_index.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/07 17:03:06 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/07 20:10:51 by hrice            ###   ########.fr       */
+/*   Created: 2019/03/12 17:33:27 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/12 17:33:27 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_free_arr(char **arr)
+int		get_index(int x, int y, int width)
 {
-	size_t	i;
-
-	i = 0;
-	while (arr[i])
-		free(arr[i++]);
-	free(arr);
+	return (y * width + x);
 }

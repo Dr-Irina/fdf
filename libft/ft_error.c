@@ -5,13 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 19:25:49 by hrice             #+#    #+#             */
-/*   Updated: 2019/02/26 19:33:37 by hrice            ###   ########.fr       */
+/*   Created: 2019/03/12 14:19:32 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/12 14:24:41 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <errno.h>
+#include <stdio.h>
 
 void	ft_error(char *s)
 {

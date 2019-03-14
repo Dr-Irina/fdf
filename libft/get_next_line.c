@@ -6,17 +6,18 @@
 /*   By: hrice <hrice@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 18:49:10 by hrice             #+#    #+#             */
-/*   Updated: 2019/03/07 19:47:13 by hrice            ###   ########.fr       */
+/*   Updated: 2019/03/12 18:16:07 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <fcntl.h>
 #include <unistd.h>
 
 int						read_file(t_new_l *line, char *buff)
 {
-	int		ret;
-	char	*str;
+	int					ret;
+	char				*str;
 
 	if (!(line->str))
 		line->str = ft_strnew(0);
@@ -36,10 +37,10 @@ int						read_file(t_new_l *line, char *buff)
 
 void					fin(t_new_l *newl, char **line)
 {
-	char	*strbuff;
-	char	*strmem;
-	int		i;
-	int		j;
+	char				*strbuff;
+	char				*strmem;
+	int					i;
+	int					j;
 
 	i = 0;
 	j = 0;
@@ -64,8 +65,8 @@ void					fin(t_new_l *newl, char **line)
 
 t_new_l					*list(t_new_l **lst, int fd)
 {
-	t_new_l		*node;
-	t_new_l		*prev;
+	t_new_l				*node;
+	t_new_l				*prev;
 
 	if (fd < 0)
 		return (NULL);

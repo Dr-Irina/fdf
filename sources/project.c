@@ -3,24 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   project.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/10 17:28:50 by vbrazhni          #+#    #+#             */
-/*   Updated: 2018/08/10 17:28:51 by vbrazhni         ###   ########.fr       */
+/*   Created: 2019/03/12 18:02:38 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/12 18:03:06 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** "fdf.h" for t_fdf type
-** "math.h" for sin(), and cos()
-*/
-
 #include "fdf.h"
 #include "math.h"
-
-/*
-** Rotate coordinate by x axis
-*/
 
 static void	rotate_x(int *y, int *z, double alpha)
 {
@@ -31,10 +22,6 @@ static void	rotate_x(int *y, int *z, double alpha)
 	*z = -previous_y * sin(alpha) + *z * cos(alpha);
 }
 
-/*
-** Rotate coordinate by y axis
-*/
-
 static void	rotate_y(int *x, int *z, double beta)
 {
 	int previous_x;
@@ -43,10 +30,6 @@ static void	rotate_y(int *x, int *z, double beta)
 	*x = previous_x * cos(beta) + *z * sin(beta);
 	*z = -previous_x * sin(beta) + *z * cos(beta);
 }
-
-/*
-** Rotate coordinate by z axis
-*/
 
 static void	rotate_z(int *x, int *y, double gamma)
 {
@@ -59,10 +42,6 @@ static void	rotate_z(int *x, int *y, double gamma)
 	*y = previous_x * sin(gamma) + previous_y * cos(gamma);
 }
 
-/*
-** Convert coordinate to iso projection
-*/
-
 static void	iso(int *x, int *y, int z)
 {
 	int previous_x;
@@ -73,10 +52,6 @@ static void	iso(int *x, int *y, int z)
 	*x = (previous_x - previous_y) * cos(0.523599);
 	*y = -z + (previous_x + previous_y) * sin(0.523599);
 }
-
-/*
-** Project coordinate to 2D plane
-*/
 
 t_point		project(t_point p, t_fdf *fdf)
 {

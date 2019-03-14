@@ -3,27 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard_controls.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/06 16:58:39 by vbrazhni          #+#    #+#             */
-/*   Updated: 2018/08/06 16:58:40 by vbrazhni         ###   ########.fr       */
+/*   Created: 2019/03/12 17:59:22 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/12 17:59:41 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** "fdf.h" for t_fdf type, zoom(), move(), rotate(), flatten() and
-** change_projection()
-** "key_macos.h" for key codes
-** <stdlib.h> for exit()
-*/
 
 #include "fdf.h"
 #include "key_macos.h"
 #include <stdlib.h>
-
-/*
-** Handle key press
-*/
 
 int			key_press(int key, void *param)
 {

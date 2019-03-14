@@ -3,26 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/10 17:28:24 by vbrazhni          #+#    #+#             */
-/*   Updated: 2019/03/07 16:34:03 by hrice            ###   ########.fr       */
+/*   Created: 2019/03/12 17:54:26 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/12 18:57:42 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** "fdf.h" for t_map type and percentage()
-** "color.h" for COLOR_DISCO macros, COLOR_BRICK_RED macros,
-**  COLOR_FLAMINGO macros, COLOR_JAFFA macros and COLOR_SAFFRON macros
-*/
-
-#include "libft.h"
 #include "fdf.h"
 #include "color.h"
-
-/*
-** Get color from default palette. Color depends on altitude
-*/
+#include "libft.h"
 
 int	get_default_color(int z, t_map *map)
 {
@@ -41,20 +31,10 @@ int	get_default_color(int z, t_map *map)
 		return (COLOR_SAFFRON);
 }
 
-/*
-** Get light for color. Result depends on point position.
-** This function is needed to create linear gradient.
-*/
-
 int	get_light(int start, int end, double percentage)
 {
 	return ((int)((1 - percentage) * start + percentage * end));
 }
-
-/*
-** Get color. Result depends on point position.
-** This function is needed to create linear gradient.
-*/
 
 int	get_color(t_point current, t_point start, t_point end, t_point delta)
 {

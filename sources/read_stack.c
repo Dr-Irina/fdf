@@ -3,26 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   read_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/09 12:48:53 by vbrazhni          #+#    #+#             */
-/*   Updated: 2019/03/07 20:02:48 by hrice            ###   ########.fr       */
+/*   Created: 2019/03/12 18:04:13 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/12 18:04:25 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** "fdf.h" for t_z_val type
-** <stdlib.h> for NULL macros
-*/
 
 #include "fdf.h"
 #include <stdlib.h>
 
-/*
-** Add t_z_val element to stack
-*/
-
-void		push(t_z_val **coords_stack, t_z_val *new)
+void		push(t_coord_val **coords_stack, t_coord_val *new)
 {
 	if (coords_stack)
 	{
@@ -32,13 +23,9 @@ void		push(t_z_val **coords_stack, t_z_val *new)
 	}
 }
 
-/*
-** Get t_z_val element from stack
-*/
-
-t_z_val	*pop(t_z_val **coords_stack)
+t_coord_val	*pop(t_coord_val **coords_stack)
 {
-	t_z_val *top;
+	t_coord_val *top;
 
 	top = NULL;
 	if (coords_stack && *coords_stack)

@@ -3,29 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbrazhni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hrice <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/06 15:27:28 by vbrazhni          #+#    #+#             */
-/*   Updated: 2019/03/07 18:51:02 by hrice            ###   ########.fr       */
+/*   Created: 2019/03/12 17:57:57 by hrice             #+#    #+#             */
+/*   Updated: 2019/03/12 18:24:46 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** "fdf.h" for t_fdf type, t_point type, get_color(), WIDTH macros,
-**  HEIGHT macros, MENU_WIDTH macros, project(), new_point() and print_menu()
-** "libft.h" for FT_ABS macros and ft_bzero()
-** "mlx.h" for mlx_put_image_to_window()
-** "color.h" for MENU_BACKGROUND macros and BACKGROUND macros
-*/
 
 #include "fdf.h"
 #include "libft.h"
 #include "mlx.h"
 #include "color.h"
 
-/*
-** Put pixel into map image
-*/
+t_point		new_point(int x, int y, t_map *map)
+{
+	t_point	point;
+	int		index;
+
+	index = get_index(x, y, map->width);
+	point.x = x;
+	point.y = y;
+	point.z = map->coords_arr[index];
+	point.color = (map->colors_arr[index] == -1) ?
+			get_default_color(point.z, map) : map->colors_arr[index];
+	return (point);
+}
 
 static void	put_pixel(t_fdf *fdf, int x, int y, int color)
 {
@@ -33,16 +35,12 @@ static void	put_pixel(t_fdf *fdf, int x, int y, int color)
 
 	if (x > MENU_WIDTH && x < WIDTH && y > 0 && y < HEIGHT)
 	{
-		i = (x * fdf->bpp / 8) + (y * fdf->size_line);
+		i = (x * fdf->bits_per_pixel / 8) + (y * fdf->size_line);
 		fdf->data_addr[i] = color;
 		fdf->data_addr[++i] = color >> 8;
 		fdf->data_addr[++i] = color >> 16;
 	}
 }
-
-/*
-** Draw line
-*/
 
 static void	draw_line(t_point f, t_point s, t_fdf *fdf)
 {
@@ -73,16 +71,12 @@ static void	draw_line(t_point f, t_point s, t_fdf *fdf)
 	}
 }
 
-/*
-** Draw background colors (Menu background + main background)
-*/
-
 static void	draw_background(t_fdf *fdf)
 {
-	int	*image;
-	int	i;
+	int		*image;
+	int		i;
 
-	ft_bzero(fdf->data_addr, WIDTH * HEIGHT * (fdf->bpp / 8));
+	ft_bzero(fdf->data_addr, WIDTH * HEIGHT * (fdf->bits_per_pixel / 8));
 	image = (int *)(fdf->data_addr);
 	i = 0;
 	while (i < HEIGHT * WIDTH)
@@ -91,10 +85,6 @@ static void	draw_background(t_fdf *fdf)
 		i++;
 	}
 }
-
-/*
-** Draw image
-*/
 
 void		draw(t_map *map, t_fdf *fdf)
 {
